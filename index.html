@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de gatinhos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="header">
+    <div> <h1> Gerador de  gatinhos</h1>
+    </div>
+    <img id="imgCat" alt="Aguardando a imagem ser carregada" />
+    <button onclick="carregarImagens()"> Clique aqui para <br> gerar </button>
+</body>
+<script type="text/javascript">
+
+const API_URL = `https://api.thecatapi.com/v1/`;
+const API_KEY = "live_mc7Z537XW2xejHmw1bMY1QkKHmb2jwV2LUE024jWZnnFb9vbdv6bj3tpTSwV4YE2";
+
+function carregarImagens()
+{
+  
+  const url = `${API_URL}images/search`;
+
+  fetch(url,{headers: {
+    'x-api-key': API_KEY
+  }})
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    currentImageToVoteOn = data[0];
+    document.getElementById("imgCat").src= currentImageToVoteOn.url;
+  });
+
+}
+</script>
+</html>
